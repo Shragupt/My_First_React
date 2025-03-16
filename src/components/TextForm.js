@@ -7,12 +7,43 @@ export default function TextForm(props) {
     setText(newText);
   }
 
+  const handleLoClick = () => {
+    let newText = text.toLowerCase();
+    setText(newText);
+  }
+
+  const handleClearClick = () => {
+    let newText = '';
+    setText(newText);
+  }
+
+  const handleAltClick = () => {
+    let newText = '';
+    for(let i=0;i<text.length;i++){
+      if(i % 2 == 0){
+        newText += text[i].toUpperCase();
+      }
+      else{
+        newText += text[i].toLowerCase();
+      }
+    }
+    setText(newText);
+  }
+
+  const handleInverseClick = () => {
+    let newText = '';
+    for(let i=text.length-1;i>=0;i--){
+      newText += text[i];
+    }
+    setText(newText);
+  }
+
   const handleOnChange = (event) => {
     //console.log("On change");
     setText(event.target.value);
   }
 
-  const [text, setText] = useState('Enter text here');
+  const [text, setText] = useState('');
   
   return (
     <>
@@ -22,11 +53,15 @@ export default function TextForm(props) {
         <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox"rows="6">
         </textarea>
       </div>
-      <button className="btn btn-primary" onClick={handleUpClick}>Convert To Uppercase</button>
+      <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert To Uppercase</button>
+      <button className="btn btn-primary mx-1" onClick={handleLoClick}>Convert To Lowercase</button>
+      <button className="btn btn-primary mx-1" onClick={handleAltClick}>Convert To Alternatives</button>
+      <button className="btn btn-primary mx-1" onClick={handleInverseClick}>Inverse Text</button>
+      <button className="btn btn-primary mx-1" onClick={handleClearClick}>Clear Text</button>
       </div>
 
     <div className="conatiner my-3">
-      <h1>Your Text Summary</h1>
+      <h2>Your Text Summary</h2>
       <p>{text.split(" ").length} words and {text.length} characters</p>
       <p>{0.008 * text.split(" ").length} Minutes to read</p>
       <h2>Preview</h2>

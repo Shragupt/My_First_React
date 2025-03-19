@@ -20,7 +20,7 @@ export default function TextForm(props) {
   const handleAltClick = () => {
     let newText = '';
     for(let i=0;i<text.length;i++){
-      if(i % 2 == 0){
+      if(i % 2 === 0){
         newText += text[i].toUpperCase();
       }
       else{
@@ -39,7 +39,6 @@ export default function TextForm(props) {
   }
 
   const handleOnChange = (event) => {
-    //console.log("On change");
     setText(event.target.value);
   }
 
